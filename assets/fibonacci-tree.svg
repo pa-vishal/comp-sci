@@ -1,0 +1,66 @@
+<svg width="500" height="300" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>
+            .node circle { fill: #fff; stroke: #2c3e50; stroke-width: 2; }
+            .node text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 16px; text-anchor: middle; dominant-baseline: middle; fill: #34495e; }
+            .line { stroke: #7f8c8d; stroke-width: 1.5; }
+            .overlap circle { stroke: #e74c3c; }
+            .overlap text { fill: #e74c3c; font-weight: bold; }
+        </style>
+    </defs>
+
+    <!-- Lines (drawn first to be in the background) -->
+    <line class="line" x1="250" y1="50" x2="150" y2="110"/>
+    <line class="line" x1="250" y1="50" x2="350" y2="110"/>
+    <line class="line" x1="150" y1="110" x2="90" y2="170"/>
+    <line class="line" x1="150" y1="110" x2="210" y2="170"/>
+    <line class="line" x1="350" y1="110" x2="290" y2="170"/>
+    <line class="line" x1="350" y1="110" x2="410" y2="170"/>
+    <line class="line" x1="90" y1="170" x2="50" y2="230"/>
+    <line class="line" x1="90" y1="170" x2="130" y2="230"/>
+
+    <!-- Nodes (drawn on top of lines) -->
+    <!-- Level 0 -->
+    <g class="node" transform="translate(250, 50)">
+        <circle r="25"/>
+        <text>fib(4)</text>
+    </g>
+
+    <!-- Level 1 -->
+    <g class="node" transform="translate(150, 110)">
+        <circle r="25"/>
+        <text>fib(3)</text>
+    </g>
+    <g class="node overlap" transform="translate(350, 110)">
+        <circle r="25"/>
+        <text>fib(2)</text>
+    </g>
+
+    <!-- Level 2 -->
+    <g class="node overlap" transform="translate(90, 170)">
+        <circle r="25"/>
+        <text>fib(2)</text>
+    </g>
+    <g class="node overlap" transform="translate(210, 170)">
+        <circle r="25"/>
+        <text>fib(1)</text>
+    </g>
+    <g class="node overlap" transform="translate(290, 170)">
+        <circle r="25"/>
+        <text>fib(1)</text>
+    </g>
+    <g class="node overlap" transform="translate(410, 170)">
+        <circle r="25"/>
+        <text>fib(0)</text>
+    </g>
+
+    <!-- Level 3 -->
+    <g class="node overlap" transform="translate(50, 230)">
+        <circle r="25"/>
+        <text>fib(1)</text>
+    </g>
+    <g class="node overlap" transform="translate(130, 230)">
+        <circle r="25"/>
+        <text>fib(0)</text>
+    </g>
+</svg>
