@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Recursive Mindset</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header>
+        <h1>Mastering Recursion</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="mindset.html" class="active">The Mindset</a>
+            <a href="analysis.html">Analysis</a>
+            <a href="patterns.html">Common Patterns</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="card">
+            <h2>The Recursive Mindset: The Leap of Faith</h2>
+            <p>The single biggest mistake programmers make is trying to trace the entire call stack. An expert trusts the recursion. This is the <strong>Leap of Faith</strong>: you assume your function already works for a smaller version of the problem.</p>
+        </section>
+
+        <section class="card">
+            <h3>The Three Non-Negotiable Rules</h3>
+            <p>Every correct recursive function adheres to these three rules.</p>
+            <ol>
+                <li><strong>The Base Case:</strong> The simplest version of the problem that can be solved directly, without another recursive call. This is your exit.</li>
+                <li><strong>The Recursive Step:</strong> The "work" part. You break the problem into a strictly smaller subproblem and call the function on it.</li>
+                <li><strong>The Combination:</strong> You combine the work from the current step with the result of the recursive call, which you trust is correct.</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h3>Example: Factorial</h3>
+            <p>Let's see the rules in action with `factorial(n)`.</p>
+<pre><code class="language-python"><span class="keyword">def</span> <span class="function-name">factorial</span>(n):
+    <span class="comment"># 1. Base Case: The simplest problem to solve.</span>
+    <span class="keyword">if</span> n <= 1:
+        <span class="keyword">return</span> 1
+    
+    <span class="comment"># 2. & 3. Recursive Step & Combination</span>
+    <span class="comment"># Leap of Faith: TRUST that factorial(n-1) returns (n-1)!</span>
+    smaller_result = factorial(n-1) 
+    <span class="keyword">return</span> n * smaller_result</code></pre>
+            <p>You don't trace `factorial(3) -> factorial(2) -> ...`. You just think: "To get `factorial(3)`, I need `3 * factorial(2)`. I trust `factorial(2)` to work. Done."</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Your Name Here. A guide for becoming an expert.</p>
+    </footer>
+</body>
+</html>
