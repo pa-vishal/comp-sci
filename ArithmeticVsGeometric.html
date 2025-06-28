@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Math in Time Complexity</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-light.min.css">
+  <style>
+    body {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 2rem;
+    }
+     
+  </style>
+</head>
+<body class="markdown-body">
+  <div class="container">
+    <h1>Math Used in Calculating Time Complexity</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Math Concept</th>
+          <th>Description</th>
+          <th>Formula / Principle</th>
+          <th>Example</th>
+          <th>Big O Use Case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Arithmetic Series</td>
+          <td>Sum of a linear sequence (equal difference)</td>
+          <td>S = n/2 (a + l)</td>
+          <td>1 + 2 + 3 + ... + n = n(n+1)/2</td>
+          <td>O(n²) for nested loops</td>
+        </tr>
+        <tr>
+          <td>Geometric Series</td>
+          <td>Sum with constant ratio</td>
+          <td>S = a(1 - rⁿ)/(1 - r)</td>
+          <td>1 + 2 + 4 + 8 + ... + 2^k</td>
+          <td>O(n log n) in divide-and-conquer</td>
+        </tr>
+        <tr>
+          <td>Logarithms</td>
+          <td>Inverse of exponentiation</td>
+          <td>log<sub>b</sub>(n) = k ⇔ b^k = n</td>
+          <td>log(n)</td>
+          <td>O(log n) in binary search</td>
+        </tr>
+        <tr>
+          <td>Exponents</td>
+          <td>Repeated multiplication</td>
+          <td>a^n</td>
+          <td>2^n recursive calls</td>
+          <td>O(2^n) for brute force</td>
+        </tr>
+        <tr>
+          <td>Factorials</td>
+          <td>Product of all integers up to n</td>
+          <td>n!</td>
+          <td>n! permutations</td>
+          <td>O(n!) in backtracking</td>
+        </tr>
+        <tr>
+          <td>Recurrence Relations</td>
+          <td>Recursive sequence definitions</td>
+          <td>T(n) = aT(n/b) + f(n)</td>
+          <td>T(n) = 2T(n/2) + n</td>
+          <td>Divide-and-conquer analysis</td>
+        </tr>
+        <tr>
+          <td>Master Theorem</td>
+          <td>Solves recurrence relations</td>
+          <td>Compare f(n) with n^log<sub>b</sub>a</td>
+          <td>T(n) = 2T(n/2) + n ⇒ O(n log n)</td>
+          <td>Recursive time complexity analysis</td>
+        </tr>
+        <tr>
+          <td>Combinatorics</td>
+          <td>Counting combinations and arrangements</td>
+          <td>C(n, k) = n! / (k!(n-k)!)</td>
+          <td>C(5,2), 2^n subsets</td>
+          <td>O(2^n), O(n^k) in DP and backtracking</td>
+        </tr>
+        <tr>
+          <td>Summations (Sigma)</td>
+          <td>Compact notation for sums</td>
+          <td>∑<sub>i=1</sub><sup>n</sup> i = n(n+1)/2</td>
+          <td>∑ i</td>
+          <td>Loop analysis, cost aggregation</td>
+        </tr>
+        <tr>
+          <td>Asymptotic Notation</td>
+          <td>Describes growth rates</td>
+          <td>O(f(n)), Θ(f(n)), Ω(f(n))</td>
+          <td>O(n), O(n log n), O(1)</td>
+          <td>Worst, best, average case analysis</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Examples of Usage in Big O</h2>
+    <h3>1. Arithmetic Series</h3>
+    <pre><code>for (int i = 1; i <= n; i++)
+    for (int j = 1; j <= i; j++)
+        count++;
+// O(n^2) time complexity due to ∑i = n(n+1)/2</code></pre>
+
+    <h3>2. Geometric Series</h3>
+    <pre><code>void recurse(int n) {
+    if (n == 1) return;
+    recurse(n/2);
+    recurse(n/2);
+}
+// T(n) = 2T(n/2) + O(1) => O(n)</code></pre>
+
+    <h3>3. Logarithms</h3>
+    <pre><code>int binarySearch(int[] arr, int target) {
+    int low = 0, high = arr.length - 1;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (arr[mid] == target) return mid;
+        else if (arr[mid] < target) low = mid + 1;
+        else high = mid - 1;
+    }
+    return -1;
+}
+// O(log n)</code></pre>
+
+    <h3>4. Factorials and Combinatorics</h3>
+    <pre><code>void permute(List<Integer> nums) {
+    if (nums.size() == n) print(nums);
+    for (int i = 0; i < n; i++) {
+        if (!used[i]) {
+            used[i] = true;
+            permute(nums.add(i));
+            used[i] = false;
+        }
+    }
+}
+// O(n!) permutations</code></pre>
+  </div>
+<div>
+</div>
+<div>
+	
+</div>
+<h1>Master Theorem in Computer Science</h1>
+
+  <p>The <strong>Master Theorem</strong> provides a way to analyze the time complexity of recursive algorithms of the form:</p>
+  
+  <pre><code>T(n) = aT(n/b) + f(n)</code></pre>
+  
+  <p>Where:</p>
+  <ul>
+    <li><strong>a ≥ 1</strong>: number of recursive calls</li>
+    <li><strong>b > 1</strong>: input size shrink factor</li>
+    <li><strong>f(n)</strong>: cost of work done outside the recursion (e.g., splitting, merging)</li>
+  </ul>
+
+  <h2>Cases of the Master Theorem</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Case</th>
+        <th>Condition</th>
+        <th>Time Complexity</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Case 1</strong></td>
+        <td>If <code>f(n) = O(n^c)</code> where <code>c &lt; log<sub>b</sub>a</code></td>
+        <td><code>T(n) = Θ(n^log<sub>b</sub>a)</code></td>
+        <td><code>T(n) = 8T(n/2) + n</code> ⇒ <code>Θ(n^3)</code></td>
+      </tr>
+      <tr>
+        <td><strong>Case 2</strong></td>
+        <td>If <code>f(n) = Θ(n^c)</code> where <code>c = log<sub>b</sub>a</code></td>
+        <td><code>T(n) = Θ(n^c log n)</code></td>
+        <td><code>T(n) = 2T(n/2) + n</code> ⇒ <code>Θ(n log n)</code></td>
+      </tr>
+      <tr>
+        <td><strong>Case 3</strong></td>
+        <td>If <code>f(n) = Ω(n^c)</code> where <code>c &gt; log<sub>b</sub>a</code>, and regularity condition holds</td>
+        <td><code>T(n) = Θ(f(n))</code></td>
+        <td><code>T(n) = 2T(n/2) + n^2</code> ⇒ <code>Θ(n^2)</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Applications of Master Theorem</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Algorithm</th>
+        <th>Recurrence</th>
+        <th>a</th>
+        <th>b</th>
+        <th>f(n)</th>
+        <th>Case</th>
+        <th>Time Complexity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Merge Sort</td>
+        <td><code>T(n) = 2T(n/2) + n</code></td>
+        <td>2</td>
+        <td>2</td>
+        <td><code>n</code></td>
+        <td>Case 2</td>
+        <td><code>Θ(n log n)</code></td>
+      </tr>
+      <tr>
+        <td>Binary Search</td>
+        <td><code>T(n) = T(n/2) + 1</code></td>
+        <td>1</td>
+        <td>2</td>
+        <td><code>1</code></td>
+        <td>Case 1</td>
+        <td><code>Θ(log n)</code></td>
+      </tr>
+      <tr>
+        <td>Strassen’s Matrix Multiplication</td>
+        <td><code>T(n) = 7T(n/2) + O(n^2)</code></td>
+        <td>7</td>
+        <td>2</td>
+        <td><code>n^2</code></td>
+        <td>Case 1</td>
+        <td><code>Θ(n^log₂7) ≈ Θ(n^2.81)</code></td>
+      </tr>
+      <tr>
+        <td>Karatsuba Multiplication</td>
+        <td><code>T(n) = 3T(n/2) + O(n)</code></td>
+        <td>3</td>
+        <td>2</td>
+        <td><code>n</code></td>
+        <td>Case 1</td>
+        <td><code>Θ(n^log₂3) ≈ Θ(n^1.585)</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Limitations</h2>
+  <ul>
+    <li>The Master Theorem only works when the recurrence is in the form <code>T(n) = aT(n/b) + f(n)</code> with constants.</li>
+    <li>It doesn't apply if the subproblems are of **unequal size**, or the number of subproblems **varies with n**.</li>
+    <li>It assumes the input size is divisible; rounding issues are ignored in asymptotic analysis.</li>
+  </ul>
+<div>
+</div>
+
+<div>
+	
+
+</div>
+
+</body>
+</html>
